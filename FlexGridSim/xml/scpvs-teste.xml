@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flexgridsim version="0.4">
+    <rsa module="SCPVS"/>
+
+    <trace file="trace.tr"/>
+
+    <traffic calls="100000" load="215" max-rate="100">
+        <calls holding-time="0.5" rate="50" cos="1" weight="1"/>
+        <calls holding-time="0.5" rate="125" cos="1" weight="1"/>
+        <calls holding-time="0.5" rate="300" cos="1" weight="1"/>
+    </traffic>
+
+    <virtual-topology  name="NSFNet">
+    </virtual-topology>
+    
+    <physical-topology name="NSFNet" slots="240" slotsBandwidth="12.5">
+        <nodes>
+            <node id="0"/>
+            <node id="1" />
+            <node id="2"/>
+            <node id="3"/>
+            <node id="4"/>
+            <node id="5"/>
+        </nodes>
+	<!-- Link weigth = distance in Km
+             Link delay = 1ms for 200Km -->
+        <links>
+            <link id="0" source="0" destination="1" delay="3.75" bandwidth="10000" weight="750"/>
+            <link id="1" source="1" destination="0" delay="3.75" bandwidth="10000" weight="750"/>
+            <link id="2" source="0" destination="2" delay="3.75" bandwidth="10000" weight="750"/>
+            <link id="3" source="2" destination="0" delay="3.75" bandwidth="10000" weight="750"/>
+            <link id="4" source="1" destination="3" delay="6.5" bandwidth="10000" weight="1300"/>
+            <link id="5" source="3" destination="1" delay="6.5" bandwidth="10000" weight="1300"/>
+            <link id="6" source="2" destination="3" delay="6" bandwidth="10000" weight="1200"/>
+            <link id="7" source="3" destination="2" delay="6" bandwidth="10000" weight="1200"/>
+            <link id="8" source="2" destination="5" delay="6" bandwidth="10000" weight="1200"/>
+            <link id="9" source="5" destination="2" delay="6" bandwidth="10000" weight="1200"/>
+            <link id="10" source="4" destination="5" delay="6" bandwidth="10000" weight="1200"/>
+            <link id="11" source="5" destination="4" delay="6" bandwidth="10000" weight="1200"/>
+        </links>
+    </physical-topology>
+    <graphs>
+    	<graph name="mbbr" dots-file="scpvs-teste-graph-mbbr.dat"/>
+    	<graph name="fragmentation" dots-file="scpvs-teste-graph-fragmentation.dat"/>
+    	<graph name="hops" dots-file="scpvs-teste-graph-hops.dat"/>
+    </graphs>
+</flexgridsim>
